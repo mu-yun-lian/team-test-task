@@ -24,14 +24,22 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "chai": "^4.4.1",
     "concurrently": "^8.2.2",
-    "nodemon": "^3.1.0"
+    "mocha": "^10.4.0",
+    "nodemon": "^3.1.0",
+    "sinon": "^17.0.1",
+    "supertest": "^6.3.4"
   },
   "scripts": {
     "setup": "cd client && npm i && cd ../ && npm i && npm run dev",
     "client": "cd client && npm start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others \"npm run client\" \"npm run server\""
+    "dev": "concurrently --kill-others \"npm run client\" \"npm run server\"",
+    "test": "mocha \"test/**/*.test.js\"",
+    "test:watch": "mocha --watch \"test/**/*.test.js\"",
+    "migrate": "knex migrate:latest --knexfile knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile knexfile.js"
   },
   "nodemonConfig": {
     "ignore": [

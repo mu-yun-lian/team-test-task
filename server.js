@@ -5,9 +5,15 @@ const path = require('path');
 const port = process.env.PORT || 8080;
 const app = express();
 
-// config express
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// config express. `verify` retains the raw body so the GitHub webhook controller
+// can verify the X-Hub-Signature-256 HMAC over the exact bytes GitHub sent.
+app.use(express.json({
+  verify: (req, res, buf) => { req.rawBody = buf.toString('utf8'); },
+}));
+app.use(express.urlencoded({ extended: true, verify: (req, res, buf) => { req.rawBody = buf.toString('utf8'); } }));
+
+// health endpoint (consumed by Docker healthcheck + CI smoke tests)
+app.get('/health', (req, res) => res.status(200).send({ status: 'ok' }));
 
 // api
 app.use(api);
@@ -31,11 +37,13 @@ app.use(function(err, req, res, next){
 
 });
 
-// start server
-const server = app.listen(port, async () => {
+// Exporting `app` lets supertest wrap the express instance directly
+// without binding a port when this module is required from tests.
+module.exports = app;
 
-  console.log('Welcome to Gravity 🚀');
-
-});
-
-module.exports = server;
+// Only auto-listen when run directly (`node server.js`); tests use supertest.
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log('Welcome to Gravity 🚀');
+  });
+}
