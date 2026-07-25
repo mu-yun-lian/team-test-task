@@ -5,6 +5,23 @@ This is a free boilerplate based on the [Gravity SaaS Boilerplate for Node.js & 
 Use it to build a full-stack web application using React, Tailwind, 
 Node.js and Express.
 
+> Branch `collaboration-release` adds release-engineering concerns on top of
+> the upstream boilerplate: **Dockerized deployment**, **Mocha + Chai tests**,
+> **in-app comment + notification module** with **GitHub PR/Issue webhook
+> notifications** (HMAC-verified), and a **docs/** directory for
+> contributing / API / deployment guides.
+
+## Table of Contents
+
+- [Quick start](#quick-start)
+- [Documentation](#documentation)
+- [Folder structure](#folder-structure)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Comment notifications](#comment-notifications)
+- [What's included](#whats-included)
+- [What's not included](#whats-not-included)
+
 This readme will cover what's included; what's not included; 
 and how to install and use the boilerplate.
 
@@ -86,11 +103,65 @@ and start both. You can also start them any time by running:
 1. Add your database credentials to the ```.env``` file
 2. Run the database migration with:
 
-```knex migrate:latest```
+```npm run migrate```
 
-This will create the user table in your database.
+This will create the `user`, `comment`, and `notification` tables in your
+database.
 
 ## Documentation
+
+| Doc | Covers |
+| --- | ------ |
+| [API](docs/API.md) | Every HTTP endpoint |
+| [CONTRIBUTING](docs/CONTRIBUTING.md) | Branches, commits, tests |
+| [DEPLOYMENT](docs/DEPLOYMENT.md) | Docker, env, CI, webhook |
+
+## Testing
+
+```bash
+npm install
+npm test
+```
+
+Tests live under `tests/` (mocha + chai + supertest + sinon). They run the
+express app in-process without a real port and stub model calls so no live
+database is required. See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md#testing)
+for the testing rules.
+
+## Deployment
+
+The repo ships a multi-stage `Dockerfile` and `docker-compose.yml` that
+bring up the app + MySQL with one command:
+
+```bash
+cp .env.example .env       # then fill DB_* + GITHUB_WEBHOOK_SECRET
+docker compose up --build
+# app: http://localhost:8080
+# mysql: localhost:3306
+```
+
+Container healthcheck polls `GET /health`. CI runs on push via
+`.github/workflows/ci.yml`. Full guide: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
+## Comment notifications
+
+The `collaboration-release` branch adds two complementary notification paths
+that both write to a unified `notification` inbox table:
+
+1. **In-app comments** &mdash; `POST /api/comment` records a comment and
+   enqueues an in-app notification for the recipient. The recipient polls
+   `GET /api/notification` to read their inbox and `POST /api/notification/:id/read`
+   to mark entries as seen.
+2. **GitHub PR / Issue comments** &mdash; `POST /api/webhook/github` accepts
+   `issue_comment`, `pull_request_review_comment`, and `pull_request_review`
+   events, verifies `X-Hub-Signature-256` against `GITHUB_WEBHOOK_SECRET`,
+   and persists each event as a notification row. Optionally forwards
+   payloads to `NOTIFY_WEBHOOK_URL` (Slack/Discord/Feishu/your gateway).
+
+Setup steps and a replay-able curl example are in
+[docs/DEPLOYMENT.md#github-webhook](docs/DEPLOYMENT.md#github-webhook).
+
+## Reference
 
 ### Folder Structure
 
