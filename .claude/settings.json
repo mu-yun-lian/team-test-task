@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m 'feat\\(comments\\): add in-app comment + notification module with GitHub webhook *)",
+      "Bash(git commit -m 'test: cover health, comments, notifications, and webhook endpoints *)",
+      "Bash(git commit -m 'docs: add API, CONTRIBUTING, DEPLOYMENT guides and update readme *)"
+    ]
+  }
+}

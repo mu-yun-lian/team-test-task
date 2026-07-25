@@ -1,0 +1,159 @@
+{
+  "company": "StrongCo",
+  "slides": [
+    {
+      "kind": "problem",
+      "title": "The Problem",
+      "headline": "SMBs lose 10 hours/week reconciling invoices",
+      "bullets": [
+        "Finance teams waste hours on manual reconciliation",
+        "Cost of errors: $50k/year per company",
+        "Why now: AI can read invoices accurately",
+        "For SMB finance teams"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "solution",
+      "title": "Solution",
+      "headline": "Automated invoice reconciliation for SMBs",
+      "bullets": [
+        "One-line value prop: close the books in minutes",
+        "How it works: AI model reads and matches invoices",
+        "Unlike QuickBooks, end-to-end and accurate",
+        "Maps to each problem above"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "market-tam",
+      "title": "Market",
+      "headline": "Bottom-up TAM = $1.2B",
+      "bullets": [
+        "1.2M SMBs x $1,000 ACV = $1.2B TAM (bottom-up)",
+        "SAM = $400M (US finance-heavy SMBs)",
+        "SOM (3yr) = $40M",
+        "Source: Statista SMB census"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "product",
+      "title": "Product",
+      "headline": "AI reconciliation engine",
+      "bullets": [
+        "Live demo screenshot",
+        "Reduces reconciliation time by 80%",
+        "Proprietary ML matching model",
+        "Plain-language: it reads invoices"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "business-model",
+      "title": "Business Model",
+      "headline": "SaaS subscription",
+      "bullets": [
+        "SaaS subscription, $1,000/yr per company",
+        "Pricing: $1k/yr ACV",
+        "CAC $4k, LTV $24k, payback 9 months",
+        "Gross margin 80%"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "traction",
+      "title": "Traction",
+      "headline": "$20k MRR, growing 20% MoM",
+      "bullets": [
+        "$20k MRR, growing 20% MoM over last 6 months",
+        "ARR $240k, 240 paying customers",
+        "NRR 115%, churn 3% monthly",
+        "Cadence: MoM, Q2 2026"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "gtm",
+      "title": "Go-to-Market",
+      "headline": "Outbound + content motion",
+      "bullets": [
+        "Outbound sales + SEO content as channels",
+        "CAC $4k, payback 9 months",
+        "Repeatable outbound playbook",
+        "One-line: outbound to SMB finance teams"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "competition",
+      "title": "Competition",
+      "headline": "vs QuickBooks, Xero, BILL",
+      "bullets": [
+        "Named competitors: QuickBooks, Xero, BILL",
+        "Comparison matrix on accuracy, automation, price",
+        "We win on end-to-end automation",
+        "Moat: proprietary invoice graph + data network effect"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "team",
+      "title": "Team",
+      "headline": "Ex-Stripe + ex-Plaid founders",
+      "bullets": [
+        "Jane Doe - CEO, ex-Stripe, 10 years in fintech",
+        "John Smith - CTO, ex-Plaid, built prior SaaS to $5M ARR",
+        "Prior exit: acquired by Stripe",
+        "Hiring head of sales (role gap covered)"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "financials",
+      "title": "Financials",
+      "headline": "Path to $5M ARR in 24 months",
+      "bullets": [
+        "$5M ARR target in 24 months",
+        "Assumptions: 20% MoM growth, 3% churn",
+        "Realistic ramp (no hockey-stick)",
+        "Gross margin 80%, 18 months runway"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    },
+    {
+      "kind": "ask",
+      "title": "Ask",
+      "headline": "Raising $1.5M seed",
+      "bullets": [
+        "$1.5M seed round",
+        "Use of funds: engineering, sales, product",
+        "Milestones: reach $500k MRR by Q4",
+        "18 months runway"
+      ],
+      "metrics": [],
+      "notes": "",
+      "raw": ""
+    }
+  ]
+}
