@@ -1,0 +1,43 @@
+# GitHub Actions CI: run tests + build the Docker image on every push / PR.
+# Comment-notification workflows are documented in docs/DEPLOYMENT.md.
+
+name: CI
+
+on:
+  push:
+    branches: [main, collaboration-release]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Lint & test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["18"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install server deps
+        run: npm install --no-audit --no-fund
+
+      - name: Install client deps
+        working-directory: client
+        run: npm install --no-audit --no-fund
+
+      - name: Build client
+        working-directory: client
+        run: npm run build
+
+      - name: Run mocha test suite
+        env:
+          NODE_ENV: test
+        run: npm test
